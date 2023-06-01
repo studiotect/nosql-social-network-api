@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const User = require('./models/User');
 
+
 // Create Express app
 const app = express();
 
@@ -10,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 // Connect to MongoDB database
-mongoose.connect('mongodb://localhost/mydatabase', {
+mongoose.connect('mongodb://localhost/socialNetDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -31,6 +32,7 @@ app.get('/users', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 
 
 // Start the server
