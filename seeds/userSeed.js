@@ -1,9 +1,12 @@
+const connection = require('../config/connection');
 const User = require('../models/User');
 
 const handleError = (err) => console.error(err);
 
 async function populateUser() {
   try {
+    await connection;
+
     const collection = await User.find({});
     if (collection.length === 0) {
       const user1 = await User.create({
@@ -39,6 +42,9 @@ async function populateUser() {
     }
   } catch (err) {
     handleError(err);
+  } finally {
+    // Close the database connection
+    connection.close();
   }
 }
 
